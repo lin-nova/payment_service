@@ -1,7 +1,5 @@
 package com.example.payment_service.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,18 +21,13 @@ public class Contract {
     @Column(name = "contract_number", unique = true, nullable = false)
     private String number;
 
-
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "client_id", nullable = false)
-    @JsonBackReference
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
     private Client client;
 
     @OneToMany(mappedBy = "contract",
             cascade = CascadeType.ALL,
             orphanRemoval = true,
             fetch = FetchType.LAZY)
-    @JsonManagedReference
     private List<Payment> payments;
 }

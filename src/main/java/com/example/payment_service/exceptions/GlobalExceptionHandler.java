@@ -57,17 +57,6 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(error);
     }
 
-    @ExceptionHandler(PaymentFileException.class)
-    public ResponseEntity<ApiError> handlePaymentFileExceptionException(Exception ex, HttpServletRequest request) {
-        ApiError error = new ApiError(
-                HttpStatus.FORBIDDEN.value(),
-                HttpStatus.FORBIDDEN.getReasonPhrase(),
-                ex.getMessage(),
-                request.getRequestURI()
-        );
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(error);
-    }
-
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiError> handleGenericException(Exception ex, HttpServletRequest request) {
         ApiError error = new ApiError(
@@ -92,7 +81,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler({MaxUploadSizeExceededException.class,
             InvalidFileTypeException.class,
-            InvalidCsvFormatException.class})
+            CsvParserException.class})
     public ResponseEntity<ApiError> handleSizeException(Exception ex, HttpServletRequest request) {
         ApiError error = new ApiError(
                 HttpStatus.BAD_REQUEST.value(),
