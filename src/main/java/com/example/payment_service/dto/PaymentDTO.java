@@ -1,15 +1,16 @@
 package com.example.payment_service.dto;
 
 import com.example.payment_service.model.PaymentType;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Digits;
 
-import java.sql.Date;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
-
-public record PaymentDTO(Date date,
-                         Double amount,
-                         PaymentType type,
-                         String contractNumber,
-                         String clientId
-) {
-
+public record PaymentDTO(
+        LocalDate date,
+        @DecimalMin(value = "0.0")
+        BigDecimal amount,
+        PaymentType type,
+        String contractNumber) {
 }

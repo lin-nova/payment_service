@@ -1,11 +1,12 @@
 package com.example.payment_service.model;
 
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "clients")
@@ -25,18 +26,12 @@ public class Client {
     @OneToMany(mappedBy = "client",
             cascade = CascadeType.ALL,
             orphanRemoval = true,
-    fetch = FetchType.LAZY)
-    @JsonManagedReference
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
+            fetch = FetchType.LAZY)
     private List<Contract> contracts;
 
     @OneToMany(mappedBy = "client",
             cascade = CascadeType.ALL,
             orphanRemoval = true,
             fetch = FetchType.LAZY)
-    @JsonManagedReference
-    @ToString.Exclude
-    @EqualsAndHashCode.Exclude
     private List<Payment> payments = new ArrayList<>();
 }
