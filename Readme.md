@@ -9,6 +9,7 @@ Application support the following features:
 - RESTful endpoints for managing payments.
 - Possibility to upload payments via CSV file in batch.
 - Exception handling and validation for uploaded files.
+- Database initialization with sample data for testing.
 
 ## Prerequisites
 Before running the application, ensure you have the following installed:
@@ -19,7 +20,7 @@ Before running the application, ensure you have the following installed:
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/lin-nova/payment_service.git
    cd payment_service
    ```
 
